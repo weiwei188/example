@@ -28,22 +28,22 @@ public class AreaDaoTest {
     @Test
     @Ignore//ignore标签运行时忽略当前测试
     public void queryAreaById() {
-//        Area area=areaDao.queryAreaById(1);
-//        assertEquals("东苑",area.getAreaName());
+        Area area=areaDao.queryAreaById(1);
+        assertEquals("dongyuan",area.getAreaName());
     }
 
     @Test
     @Ignore
     public void insertArea() {
-//        Area area=new Area();
-//        area.setAreaName("南苑");
-//        area.setPriority(1);
-//        int effectedNum=areaDao.insertArea(area);
-//        assertEquals(1,effectedNum);
+        Area area=new Area();
+        area.setAreaName("nanyuan");
+        area.setPriority(1);
+        int effectedNum=areaDao.insertArea(area);
+        assertEquals(1,effectedNum);
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void updateArea() {
        // Area area=
     }
