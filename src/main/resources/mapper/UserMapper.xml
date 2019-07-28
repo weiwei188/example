@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mappers:映射器，将包内的映射器接口实现全部注册为映射器 -->
+<mapper namespace="com.firstspringboot.springboot.dao.UserDao">
+
+    <sql id="userColumn">
+        id, name, sex,telephone,register_action,third_party_id,age,password
+    </sql>
+
+    <resultMap id="userColumn" type="com.firstspringboot.springboot.entity.User">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="sex" property="sex"/>
+        <result column="telephone" property="telephone"/>
+        <result column="register_action" property="registerAction"/>
+        <result column="third_party_id" property="thirdPartyId"/>
+        <result column="age" property="age"/>
+        <result column="password" property="password"/>
+    </resultMap>
+
+    <!--这里的resultMap的值要与上面resultMap的id值保持一致-->
+    <select id="selectAllUser" parameterType="String"
+            resultMap="userColumn">
+        select *
+        from user_info
+    </select>
+    <select id="selectUserById"
+            parameterType="Integer"
+            resultMap="userColumn">
+        select *
+        from user_info
+        where id=#{id}
+    </select>
+
+    <delete id="deleteUserById">
+        delete from user_info
+        where id=#{id}
+    </delete>
+
+    <insert id="insertUser">
+        insert into user_info
+        (id,
+        name,
+        sex,
+        telephone,
+        register_action,
+        third_party_id,
+        age,
+        password)
+        values (
+	    	#{id},
+	    	#{name},
+	    	#{sex},
+	    	#{telephone},
+	    	#{register_action},
+	    	#{third_party_id},
+	    	#{age},
+	    	#{password}
+	    )
+    </insert>
+
+    <update id="updateUser" >
+        update user_info
+        set
+        <if test="password != null">
+            password = #{password},
+        </if>
+        <if test="telephone != null">
+            telephone = #{telephone},
+        </if>
+        <if test="register_action != null">
+            register_action = #{registerAction},
+        </if>
+        WHERE id=#{id}
+    </update>
+
+</mapper>
